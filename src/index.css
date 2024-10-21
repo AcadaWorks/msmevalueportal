@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'inter';
+  src: url('./assets/fonts/Inter/inter.ttf') format('truetype'),
+       url('./assets/fonts/Inter/static/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'interBold';
+  src: url('./assets/fonts/Inter/static/Inter_18pt-Bold.ttf') format('truetype'),
+       url('./assets/fonts/Inter/static/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  padding: 0px; /* Fixed typo from 'pdding' to 'padding' */
+}
+
+* {
+  font-family: 'inter';
+}
+
+
+
+.upper-nav {
+  font-family: 'inter';
+  font-size: 50%;
+  font-weight: 100;
+  color: #374151;
+  text-decoration: none;
+}
+.logo{
+  width:50vw;
+}
+
+
+.active{
+  background-color:black;
+  border-radius:20px;
+  color:white;
+  text-decoration: none;
+}
+
+/* NavBar.css */
+
+.nav-link {
+  color: inherit; /* Inherit the color from the parent */
+  transition: none; /* Remove transition effect on hover */
+}
+
+.nav-link:hover{
+  color: inherit; /* Prevent color change on hover or active state */
+  text-decoration: none; /* Prevent underline on hover */
+}
+.nav-link:focus{
+  color: inherit; /* Prevent color change on hover or active state */
+  text-decoration: none; /* Prevent underline on hover */
+}
+.nav-link.active{
+  color: white; /* Prevent color change on hover or active state */
+  text-decoration: none; /* Prevent underline on hover */
+}
+
+
+.gem{
+  background: linear-gradient(to bottom right, #F2D884, #F99F92);
+
+}
+
+
+/* Media Query for Desktop Screens */
+@media (min-width: 768px) {
+  .upper-nav {
+    font-size: 70%; /* Adjust font size for desktop */
+    font-weight: 400; /* Adjust font weight if needed */
+  }
+
+  .post-button {
+    padding: 0.8%; /* Adjust padding for desktop */
+  }
+  .logo{
+    width:20vw;
+  }
+
+  /* Add any additional styles for desktop here */
+  body {
+    /* Add body styles specific to desktop */
+    background-color: #f0f0f0; /* Example background color */
+  }
+}

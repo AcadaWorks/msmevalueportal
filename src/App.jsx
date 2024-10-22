@@ -5,11 +5,12 @@ import './App.css'
 // Importing the Bootstrap CSS file
 
 import NavBar from './components/NavBar'
+import DotMap from './routes/DotMap'
 
 function App() {
   return (
     <Fragment>
-      <NavBar activeIndex={0} />
+      <DotMap />
     </Fragment>
   )
 }

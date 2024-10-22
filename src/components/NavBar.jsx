@@ -5,6 +5,7 @@ import gem from "../assets/icons/gem.svg";
 export default function NavBar({ activeIndex }) {
   return (
     <Fragment>
+      <div className="top-nav">
       <div className="container-xxl border-bottom px-0 px-md-5">
         <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 px-0 px-md-5">
           <div className="col-md-3 mb-0 mb-md-0">
@@ -83,7 +84,7 @@ export default function NavBar({ activeIndex }) {
         </header>
       </div>
       <div className="container-xxl px-2 px-md-5">
-        <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 px-0 px-md-5">
+        <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 px-0 px-md-5"  style={{ overflowX: "auto", whiteSpace: "nowrap" }}>
           <ul className="nav d-flex justify-content-between flex-wrap w-100 ">
             <li className="nav-item">
               <a 
@@ -136,6 +137,7 @@ export default function NavBar({ activeIndex }) {
             </li>
           </ul>
         </header>
+      </div>
       </div>
     </Fragment>
   );

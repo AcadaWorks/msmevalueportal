@@ -21,7 +21,12 @@ body {
 * {
   font-family: 'inter';
 }
-
+.top-nav{
+  position:fixed;
+  width:100%;
+  z-index:10;
+  background-color:white;
+}
 
 
 .upper-nav {
@@ -70,8 +75,68 @@ body {
 }
 
 
+.body {
+  padding-top:22vh;
+}
+
+
+.searchContainer{
+  position:fixed;
+  z-index:5;
+  top: 25vh;
+  left : 13vw;
+  padding:15px;
+}
+
+.search-input {
+  position: relative;
+  width: 100%;
+}
+
+.search-input input {
+  padding-left: 35px; /* to make room for the search icon */
+}
+
+.search-input .search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #a0a0a0;
+}
+
+.desktop{
+  display:none;
+}
+
+.mobile{
+  display: block;
+}
+
+
+
+
 /* Media Query for Desktop Screens */
 @media (min-width: 768px) {
+
+  .desktop{
+    display:block;
+  }
+  .mobile{
+    display:none;
+  }
+  
+  
+
+  .searchContainer{
+    position:fixed;
+    z-index:5;
+    top: 20vh;
+    left : 5vw;
+    padding:15px;
+  }
+  
   .upper-nav {
     font-size: 70%; /* Adjust font size for desktop */
     font-weight: 400; /* Adjust font weight if needed */
@@ -88,5 +153,8 @@ body {
   body {
     /* Add body styles specific to desktop */
     background-color: #f0f0f0; /* Example background color */
+  }
+  .body {
+    padding-top:15vh;
   }
 }

@@ -14,8 +14,11 @@
   font-style: normal;
 }
 
+
 body {
   padding: 0px; /* Fixed typo from 'pdding' to 'padding' */
+  color:transparent;
+  background-color:white;
 }
 
 * {
@@ -24,6 +27,7 @@ body {
 .top-nav{
   position:fixed;
   width:100%;
+  color:black;
   z-index:10;
   background-color:white;
 }
@@ -77,6 +81,7 @@ body {
 
 .body {
   padding-top:22vh;
+  color:black;
 }
 
 
@@ -115,10 +120,20 @@ body {
 }
 
 
+.related_business_search_div{
+  height:40%;
+}
+
+
 
 
 /* Media Query for Desktop Screens */
 @media (min-width: 768px) {
+
+  .related_business_search_div{
+    margin-bottom:5%;
+    height:60%;
+  }
 
   .desktop{
     display:block;

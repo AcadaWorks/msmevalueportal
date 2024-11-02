@@ -88,7 +88,7 @@ export default function NavBar({ activeIndex }) {
           <ul className="nav d-flex justify-content-between flex-wrap w-100 ">
             <li className="nav-item">
               <a 
-                href="#" 
+                href="/" 
                 className={`nav-link upper-nav ${activeIndex === 0 ? 'active' : ''}`} 
                 aria-current={activeIndex === 0 ? 'page' : undefined}
               >
@@ -97,7 +97,7 @@ export default function NavBar({ activeIndex }) {
             </li>
             <li className="nav-item">
               <a 
-                href="#" 
+                href="/locator" 
                 className={`nav-link upper-nav ${activeIndex === 1 ? 'active' : ''}`}
               >
                 Locator
@@ -105,7 +105,7 @@ export default function NavBar({ activeIndex }) {
             </li>
             <li className="nav-item">
               <a 
-                href="#" 
+                href="/related_business" 
                 className={`nav-link upper-nav ${activeIndex === 2 ? 'active' : ''}`}
               >
                 Related Business Generator
@@ -127,14 +127,14 @@ export default function NavBar({ activeIndex }) {
                 Information Stand
               </a>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a 
                 href="#" 
                 className={`nav-link upper-nav ${activeIndex === 5 ? 'active' : ''}`}
               >
                 Business Enabling Resources
               </a>
-            </li>
+            </li> */}
           </ul>
         </header>
       </div>

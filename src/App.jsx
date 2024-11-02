@@ -1,18 +1,22 @@
-import { Fragment, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-// Importing the Bootstrap CSS file
+import { Fragment } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css';
 
-import NavBar from './components/NavBar'
-import DotMap from './routes/DotMap'
+// Importing your components
+import DotMap from './routes/DotMap'; // The DotMap page/component
+import Locator from './routes/Locator';
+import RelatedBusiness from './routes/RelatedBusiness';
 
 function App() {
   return (
-    <Fragment>
-      <DotMap />
-    </Fragment>
-  )
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<DotMap />} />
+      <Route path="locator" element={<Locator />} />
+      <Route path="related_business" element={<RelatedBusiness />} />
+    </Routes>
+  </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

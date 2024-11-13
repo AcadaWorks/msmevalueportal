@@ -113,7 +113,7 @@ export default function NavBar({ activeIndex }) {
             </li>
             <li className="nav-item">
               <a 
-                href="#" 
+                href="/b2b_matcher" 
                 className={`nav-link upper-nav ${activeIndex === 3 ? 'active' : ''}`}
               >
                 B2B Matcher
@@ -121,7 +121,7 @@ export default function NavBar({ activeIndex }) {
             </li>
             <li className="nav-item">
               <a 
-                href="#" 
+                href="/news_hub" 
                 className={`nav-link upper-nav ${activeIndex === 4 ? 'active' : ''}`}
               >
                 Information Stand

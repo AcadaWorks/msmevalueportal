@@ -81,6 +81,7 @@ body {
 
 .body {
   padding-top:22vh;
+  background-color:white;
   color:black;
 }
 
@@ -90,7 +91,9 @@ body {
   z-index:5;
   top: 25vh;
   left : 13vw;
-  padding:15px;
+  padding:20px;
+  width:70%;
+  
 }
 
 .search-input {
@@ -123,6 +126,10 @@ body {
 .related_business_search_div{
   height:40%;
 }
+.b2b_business_search_div{
+  height:50%;
+
+}
 
 
 
@@ -134,6 +141,11 @@ body {
     margin-bottom:5%;
     height:60%;
   }
+  .b2b_business_search_div{
+    height:50%;
+  
+  }
+  
 
   .desktop{
     display:block;
@@ -150,6 +162,7 @@ body {
     top: 20vh;
     left : 5vw;
     padding:15px;
+    width:30%;
   }
   
   .upper-nav {

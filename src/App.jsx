@@ -14,10 +14,10 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<DotMap />} />
-      <Route path="locator" element={<Locator />} />
-      <Route path="related_business" element={<RelatedBusiness />} />
-      <Route path="b2b_matcher" element={<B2BMatcher />} />
-      <Route path="news_hub" element={<NewsHUb />} />
+      <Route path="/locator" element={<Locator />} />
+      <Route path="/related_business" element={<RelatedBusiness />} />
+      <Route path="/b2b_matcher" element={<B2BMatcher />} />
+      <Route path="/news_hub" element={<NewsHUb />} />
     </Routes>
   </BrowserRouter>
   );

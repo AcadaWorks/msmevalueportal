@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useContext } from "react";
 import NavBar from "../components/NavBar";
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import locationIcon from "../assets/map/location.svg";
@@ -7,8 +7,12 @@ import tinyRedCircle from "../assets/map/red-dot.svg";
 import SearchContainer from "../components/SearchContainer";
 import mapStyle from "../assets/map/dot-map.json";
 import SearchResult from "../components/SearchResult";
+import { LocationContext } from '../context/LocationProvider';
+
 
 function DotMap({ google }) {
+  const { location } = useContext(LocationContext);
+
   const [userLocation, setUserLocation] = useState({
     latitude: null,
     longitude: null,
@@ -19,24 +23,13 @@ function DotMap({ google }) {
   const [selectedMsme, setSelectedMsme] = useState(null); // Track selected MSME
   const [infoWindow, setInfoWindow] = useState(null); // InfoWindow reference
   const [selectedInfo, setSelectedInfo] = useState(null); // InfoWindow content (name)
+  const [mapInstance, setMapInstance] = useState(null); // To store the map instance
 
   const getUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
-          fetchNearbyMsmes(latitude, longitude);
-        },
-        (error) => {
-          console.error("Error getting user location:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
+    setUserLocation({ latitude: location.latitude, longitude: location.longitude });
+    fetchNearbyMsmes(location.latitude, location.longitude);
   };
-
+  
   const fetchNearbyMsmes = (latitude, longitude) => {
     const service = new google.maps.places.PlacesService(
       document.createElement("div")
@@ -138,26 +131,22 @@ function DotMap({ google }) {
   }, []);
 
   const tinyBlackCircle = {
-    path: "M 0,0 m -5,0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0",
+    path: google.maps.SymbolPath.CIRCLE, // Use predefined circle path for better compatibility
     fillColor: "black",
     fillOpacity: 1,
     strokeColor: "black",
-    strokeWeight: 1,
-    scale: 0.5,
+    strokeWeight: 0, // Set stroke weight explicitly
+    scale: 3, // Adjust scale for visibility
   };
-
-  // const tinyRedCircle = {
-  //   path: "M 0,0 m -5,0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0",
-  //   fillColor: "red",
-  //   fillOpacity: 1,
-  //   strokeColor: "red",
-  //   strokeWeight: 1,
-  //   scale: 0.5,
-  // };
+  
 
   const handleMsmeClick = (msme, marker) => {
     setSelectedMsme(msme);
     setSelectedInfo(msme.name); // Set the name of the selected MSME for the InfoWindow
+
+    if (mapInstance) {
+      mapInstance.panTo(msme.geometry.location);
+    }
 
     // Open InfoWindow at the marker's position
     const iw = new google.maps.InfoWindow({
@@ -166,6 +155,7 @@ function DotMap({ google }) {
 
     iw.open(marker.getMap(), marker); // Open the InfoWindow at the clicked marker
     setInfoWindow(iw); // Keep a reference to InfoWindow
+    
   };
 
   const handleMapClick = () => {
@@ -248,6 +238,7 @@ function DotMap({ google }) {
               lng: userLocation.longitude,
             }}
             onReady={(mapProps, map) => {
+              setMapInstance(map); // Store the map instance
               map.setOptions({
                 styles: mapStyle,
                 scrollwheel: false,
@@ -267,6 +258,12 @@ function DotMap({ google }) {
                 anchor: new google.maps.Point(32, 32),
                 scaledSize: new google.maps.Size(64, 64),
               }}
+              onMouseover={(props, marker) => {
+                const iw = new google.maps.InfoWindow({
+                  content: "You are here",
+                });
+                iw.open(marker.getMap(), marker);
+              }}
               title="You are here"
             />
             {msmeLocations.map((location, index) => (
@@ -281,6 +278,20 @@ function DotMap({ google }) {
                     ? tinyRedCircle // If this MSME is selected, show red marker
                     : tinyBlackCircle // Otherwise, show black marker
                 }
+                onMouseover={(props, marker) => {
+                  const iw = new google.maps.InfoWindow({
+                    content: `${location.name}`,
+                  });
+                  iw.open(marker.getMap(), marker);
+                }}
+                onMouseout={(props, marker) => {
+                  // Check if InfoWindow exists and close it
+                  if (marker.infoWindow) {
+                    marker.infoWindow.close();
+                    marker.infoWindow = null; // Clean up reference to prevent memory leaks
+                  }
+                }}
+                
                 onClick={(props, marker) => handleMsmeClick(location, marker)}
               />
             ))}

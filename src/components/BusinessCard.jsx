@@ -1,6 +1,15 @@
 import React, { Fragment } from 'react';
 
-export default function BusinessCard() {
+export default function BusinessCard({ 
+  title, 
+  category, 
+  phoneNumber, 
+  address, 
+  description,
+  photoReference
+}) {
+  const base_url = import.meta.env.VITE_API_BASE_URL;
+  console.log(base_url)
   return (
     <Fragment>
       <div
@@ -12,22 +21,36 @@ export default function BusinessCard() {
           borderRadius: "5px",
           padding: "15px",
           backgroundColor: "white",
-          overflow:"hidden"
+          overflow: "hidden"
         }}
       >
-        {/* Image placeholder */}
+        {/* Image section */}
         <div
           className="me-3"
           style={{
             width: '50px',
             height: '50px',
-            backgroundColor: '#E9ECEF',
-            borderRadius: "5px"
+            borderRadius: "5px",
+            overflow: "hidden",
+            backgroundColor: photoReference ? "transparent" : "#E9ECEF"
           }}
-        ></div>
+        >
+          {photoReference ? (
+            <img
+              src={`${base_url}/photo?photoreference=${photoReference}`}
+              alt="Business"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "5px"
+              }}
+            />
+          ) : null}
+        </div>
 
-        {/* Content section with scrollable overflow */}
-        <div className='text-start' style={{ flex: 1, overflowY: 'hidden', maxHeight: '100px' }}>
+        {/* Content section */}
+        <div className="text-start" style={{ flex: 1, overflowY: 'hidden', maxHeight: '100px' }}>
           <a
             href="#"
             className="fw-bold text-dark"
@@ -37,17 +60,17 @@ export default function BusinessCard() {
               fontSize: "0.9rem"
             }}
           >
-            Forward Implementation Consultant
+            {title}
           </a>
           <p className="mb-1" style={{ fontSize: "0.7rem", color: "#6B7280", fontFamily: "interBold" }}>
-            <i className="bi bi-house-fill"></i> &nbsp; [Business Category] &nbsp; &nbsp;
-            <i className="bi bi-telephone-fill"></i>&nbsp; [Phone_number]
+            <i className="bi bi-house-fill"></i> &nbsp; {category} &nbsp; &nbsp;
+            <i className="bi bi-telephone-fill"></i>&nbsp; {phoneNumber}
           </p>
           <p className="mb-1" style={{ fontSize: "0.7rem", color: "#6B7280", fontWeight: 'bold', fontFamily: "interBold" }}>
-            <i className="bi bi-geo-alt-fill"></i> Landmark Towers, 5B Water Corporation RD, VI, Lagos, Nigeria.
+            <i className="bi bi-geo-alt-fill"></i> {address}
           </p>
           <p className="mb-0" style={{ fontSize: "0.5rem", color: "#68727D" }}>
-            Invite building sky staircase shark. Hard Backend version vendor knowledge creep market on.
+            {description}
           </p>
         </div>
       </div>

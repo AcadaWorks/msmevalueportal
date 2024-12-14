@@ -124,10 +124,10 @@ body {
 
 
 .related_business_search_div{
-  height:40%;
+  height:60vh;
 }
 .b2b_business_search_div{
-  height:50%;
+  height:60vh;
 
 }
 
@@ -139,7 +139,7 @@ body {
 
   .related_business_search_div{
     margin-bottom:5%;
-    height:60%;
+    height:60vh;
   }
   .b2b_business_search_div{
     height:50%;

@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 
-export default function B2BResult() {
+export default function B2BResult({ businessName, address, photoReference }) {
+  const base_url = import.meta.env.VITE_API_BASE_URL;
+
   return (
     <Fragment>
       <div
@@ -13,7 +15,7 @@ export default function B2BResult() {
           backgroundColor: "white",
         }}
       >
-        {/* Image placeholder */}
+        {/* Image section */}
         <div
           className="me-2"
           style={{
@@ -21,8 +23,17 @@ export default function B2BResult() {
             height: '25px',
             backgroundColor: '#E9ECEF',
             borderRadius: "5px",
+            overflow: "hidden",
           }}
-        ></div>
+        >
+          {photoReference ? (
+            <img
+              src= {`${base_url}/photo?photoreference=${photoReference}`}
+              alt={businessName}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          ) : null}
+        </div>
 
         {/* Content section */}
         <div style={{ flex: 1, overflow: 'hidden' }}>
@@ -39,7 +50,7 @@ export default function B2BResult() {
               maxWidth: "100%",
             }}
           >
-            [Business name can be this long]
+            {businessName}
           </span>
 
           <small
@@ -59,7 +70,7 @@ export default function B2BResult() {
                 marginRight: "5px",
               }}
             ></i>
-            Landmark Towers 5B, Water Corporation RD, VI, Lagos, Nigeria.
+            {address || '[Address]'}
           </small>
         </div>
       </div>

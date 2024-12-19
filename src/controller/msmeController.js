@@ -21,7 +21,7 @@ const MsmeController = () => {
 
     async function b2bMatcher(type,category) {
         try {
-            const url = `/msme/b2b_matcher?longitude=${location.longitude}&latitude=${location.longitude}&radius=20000&type=${type}&category=${category}`;
+            const url = `/msme/b2b_matcher?longitude=${location.longitude}&latitude=${location.latitude}&radius=20000&type=${type}&category=${category}`;
             const response = await apiService.fetchData(url, {});
             console.log(response);
             return response.data || []; // Ensure we return an array
